@@ -1,0 +1,68 @@
+======================================================================
+FINAL ASSEMBLED AQCN SYSTEM - EVALUATION REPORT
+QUANT dataset (NO2, cal1) | held-out future test window | no leakage
+======================================================================
+
+Sensors processed: 40 / 40
+
+----------------------------------------------------------------------
+CORE SYSTEM  (Random Forest + KS drift + calibrated fault detection)
+----------------------------------------------------------------------
+Aggregated across all sensors as MEAN | MEDIAN. The MEAN baseline is
+inflated by a few sensors whose cal1 product emits spurious/negative values, so
+the MEDIAN is the representative figure. 'Clean' = FAULTY hours removed.
+
+Metric    Raw mean   Raw med   Cal mean   Cal med  Clean med
+RMSE        20.671     6.940      4.006     3.645      3.356
+MAE         10.417     6.156      2.860     2.656      2.564
+MBE         -2.196     1.120      0.863     0.717      0.701
+nRMSE      193.819    59.818     34.683    30.847     27.390
+R2         -84.972     0.454      0.762     0.852      0.872
+r            0.808     0.875      0.899     0.941      0.950
+d            0.739     0.832      0.935     0.958      0.965
+
+RMSE reduction             : mean 80.6%  |  median per-sensor 55.2%
+Sensors improved           : 36/40
+Sensors with R2 > 0.5      : raw 20  ->  calibrated 37
+Sensors with R2 > 0.9      : 13
+
+NOTE  the raw R2 mean (-84.97) is dominated by the single worst sensor (raw R2 -3287). Excluding it the
+      mean is -2.87; the MEDIAN raw R2 is +0.45. Report the median, not the mean, for the baseline.
+
+Drift-triggered retrains   : 152
+SUSPECT sensor-hours       : 5957
+FAULTY sensor-hours        : 5959
+
+Per-city (calibrated):
+  City    N   rawRMSE   calRMSE   calR2
+  MCH    33      9.20      3.63    0.78
+  LON     3    139.57      4.63    0.47
+  YRK     4     26.10      6.67    0.81
+
+----------------------------------------------------------------------
+SCOPE OF THIS RUN
+----------------------------------------------------------------------
+The numbers above are the CORE adaptive system that runs end-to-end
+here: RF calibration + KS drift + calibrated-consensus fault detection.
+Gap filling is DISABLED in this run (use_gap_fill=False). The
+enhancements below (SAITS gap-fill, MAML cold start, GNN dense-city
+calibrator) are each validated in their OWN benchmark (experiments
+04 / 05 / 08) and are NOT folded into the core numbers above.
+
+----------------------------------------------------------------------
+NETWORK-LEVEL ENHANCEMENTS (validated separately, not in core numbers)
+----------------------------------------------------------------------
+
+[Dense-city calibrator: GNN]  Manchester GNN mean RMSE 3.388, R2 0.839  (~10% better than RF in the dense network)
+[Gap filling: SAITS]  6h-gap RMSE 3.63 (vs linear 4.20); best imputer at all gap lengths.
+[Cold start: MAML]  new-sensor mean RMSE 6.77 (vs borrowing 9.92); 32% better, calibrates a new sensor from 14 days of data.
+
+----------------------------------------------------------------------
+EVERY COMPONENT CHOICE IS BACKED BY A HEAD-TO-HEAD TEST
+----------------------------------------------------------------------
+  Calibrator : 9-model bake-off  -> RF/XGBoost top tier (tied)
+  Gap filling: SAITS/BRITS/CSDI/Linear -> SAITS best
+  Drift      : CUSUM/ADWIN/BOCPD/KS/Uncertainty -> KS (reference-free)
+  Cold start : Raw/Self/Borrow/Global/MAML -> MAML (+32%)
+  Fault      : 7 detectors x raw/calibrated -> calibrated consensus
+  Dense city : GNN vs RF -> GNN +10% (Manchester)

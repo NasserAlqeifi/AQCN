@@ -1,0 +1,17 @@
+============================================================
+FAULT DETECTOR COMPARISON (injected faults, micro-averaged)
+Precision = of flagged hours, how many were real faults
+Recall    = of real fault hours, how many were caught
+F1        = balance of the two (higher = better)
+============================================================
+
+Detector            Precision   Recall       F1
+Z-score                 0.127    0.189    0.152
+IQR                     0.148    0.305    0.199
+Consensus               0.008    0.794    0.017
+Ensemble(ours)          0.008    0.652    0.016
+IsolationForest         0.019    0.473    0.036
+OneClassSVM             0.022    0.586    0.042
+Autoencoder             0.029    0.423    0.054
+
+Best detector by F1: IQR (0.199)

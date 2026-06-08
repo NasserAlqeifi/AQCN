@@ -1,0 +1,28 @@
+==================================================================
+FINAL CALIBRATION MODEL BAKE-OFF (9 models)
+Per-sensor, temporal 60/40 split, held-out test vs reference
+==================================================================
+
+Model             RMSE     MAE      R2       d   R2>0.5
+-------------------------------------------------------
+XGBoost          5.016   3.777   0.579   0.897    31/40
+RandomForest     5.047   3.769   0.561   0.899    32/40
+GradBoost        5.062   3.776   0.559   0.899    33/40
+kNN              5.196   3.818   0.633   0.884    31/40
+SVR              5.403   3.970   0.560   0.876    29/40
+Ridge            6.624   4.624   0.195   0.847    25/40
+Linear           6.629   4.627   0.193   0.847    25/40
+CNN1D            8.222   5.932  -0.193   0.752    16/40
+MLP              8.350   4.361  -3.657   0.846    25/40
+
+Ranked best->worst by mean RMSE. Winner: XGBoost (5.016)
+
+RandomForest = 5.047. Deltas vs RandomForest:
+  XGBoost     : +0.6% (better)
+  GradBoost   : -0.3% (worse)
+  kNN         : -3.0% (worse)
+  SVR         : -7.1% (worse)
+  Ridge       : -31.3% (worse)
+  Linear      : -31.3% (worse)
+  CNN1D       : -62.9% (worse)
+  MLP         : -65.4% (worse)

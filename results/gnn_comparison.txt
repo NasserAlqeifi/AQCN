@@ -1,0 +1,14 @@
+================================================================
+GRAPH NEURAL NETWORK vs RANDOM FOREST (network-scale calibration)
+Per-sensor, temporal 60/40 split, held-out test vs reference
+================================================================
+
+GNN  : RMSE=3.874  R2=0.790  d=0.943  (26 sensors)
+RF   : RMSE=4.017  R2=0.748  d=0.920  (26 matched sensors)
+
+GNN vs RF: +3.6% RMSE (GNN better)
+
+Per-city mean RMSE:
+  MCH: GNN=3.388  RF=3.762
+  LON: GNN=5.155  RF=5.206
+  YRK: GNN=14.269  RF=8.953

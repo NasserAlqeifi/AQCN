@@ -1,0 +1,15 @@
+============================================================
+FAULT DETECTOR COMPARISON - CALIBRATED signals (fair test)
+Consensus/ensemble now use calibrated peers that agree when healthy.
+============================================================
+
+Detector            Precision   Recall       F1
+Z-score                 0.082    0.133    0.102
+IQR                     0.102    0.212    0.138
+Consensus               0.034    0.728    0.066
+Ensemble(ours)          0.047    0.538    0.087
+IsolationForest         0.028    0.342    0.052
+OneClassSVM             0.043    0.492    0.079
+Autoencoder             0.066    0.374    0.113
+
+Best detector by F1: IQR (0.138)

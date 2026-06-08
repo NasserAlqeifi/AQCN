@@ -1,0 +1,22 @@
+# Raw + processed data (downloaded / generated - not versioned)
+data/raw/
+data/processed/
+
+# Logs
+*.log
+results/*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp

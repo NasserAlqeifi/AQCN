@@ -1,0 +1,17 @@
+================================================================
+COLD-START COMPARISON (RMSE vs reference on held-out new sensors)
+14-day warmup | 10 new sensors | donors excluded
+================================================================
+
+Method         mean RMSE  median RMSE    best/worst sensors
+Raw               32.681       11.204
+Self_RF            8.715        8.012
+Borrow_RF          9.919        7.724
+Global_RF          8.385        5.222
+MAML               6.765        6.048
+
+Best method (lowest mean RMSE): MAML (6.765)
+  Self_RF    vs Raw: +73.3% RMSE
+  Borrow_RF  vs Raw: +69.7% RMSE
+  Global_RF  vs Raw: +74.3% RMSE
+  MAML       vs Raw: +79.3% RMSE

@@ -1,0 +1,26 @@
+# Core data / ML
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.4
+pyarrow>=14.0
+
+# Gradient boosting (calibrator bake-off)
+xgboost>=2.0
+
+# Deep models: imputation (SAITS/BRITS/CSDI), MAML, CNN, GNN
+torch>=2.2
+pypots>=1.5
+
+# Drift detection (ADWIN)
+river>=0.21
+
+# Plotting (per-sensor result figure)
+matplotlib>=3.7
+
+# Dev / tests
+pytest>=8.0
+
+# Optional: Chronos foundation model (wired-in gap-fill stand-in; SAITS is the
+# benchmarked winner, and gap-fill is disabled in the final run)
+# chronos-forecasting>=2.2

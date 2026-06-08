@@ -1,0 +1,14 @@
+============================================================
+GAP-FILLING COMPARISON  (proper imputers, Chronos dropped)
+RMSE (ppb) on artificially-masked NO2 gaps vs truth
+============================================================
+
+  Gap      SAITS     BRITS      CSDI    Linear
+   6h      3.630     8.192     3.821     4.197
+  12h      4.934    15.142     5.021     6.574
+  24h      5.772    21.724     5.934     7.083
+
+Best method per gap length:
+   6h -> SAITS (3.630)
+  12h -> SAITS (4.934)
+  24h -> SAITS (5.772)

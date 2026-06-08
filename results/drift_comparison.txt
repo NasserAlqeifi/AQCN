@@ -1,0 +1,18 @@
+====================================================================
+DRIFT DETECTOR COMPARISON  (Random Forest calibrator fixed)
+Metrics: adaptive calibration on held-out reference, all 40 sensors
+====================================================================
+
+Detector    rawRMSE  staticRMSE  adaptRMSE  adaptR2  adaptD  retrains  improved
+-------------------------------------------------------------------------------
+CUSUM        20.671       5.045      3.912    0.766   0.937       362      39/40
+ADWIN        20.671       5.045      4.101    0.701   0.930       287      38/40
+BOCPD        20.671       5.045      4.063    0.720   0.932       363      38/40
+KS           20.671       5.045      3.943    0.769   0.936       250      39/40
+Uncertainty   20.671       5.045      4.921    0.577   0.903        30      34/40
+
+Lowest mean adaptive RMSE: CUSUM (3.912)
+  ADWIN vs CUSUM: -4.8% RMSE (worse)
+  BOCPD vs CUSUM: -3.9% RMSE (worse)
+  KS vs CUSUM: -0.8% RMSE (worse)
+  Uncertainty vs CUSUM: -25.8% RMSE (worse)
